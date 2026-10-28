@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HostelWise — Smart Food Waste Management</title>
+<style>
+:root{--navy:#15324b;--green:#1e8b67;--bg:#f3f7f6;--muted:#627386;--line:#dce7e4}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#183047}
+header{background:var(--navy);color:white;padding:22px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-size:22px;font-weight:800}.brand span{color:#7fe0b4}header small{opacity:.8}
+main{max-width:1180px;margin:26px auto;padding:0 18px}
+h1{font-size:30px;margin:0 0 8px}.sub{color:var(--muted);margin-bottom:22px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:20px 0}
+.card,.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 3px 12px #17344b08}
+.label{color:var(--muted);font-size:14px}.value{font-size:30px;font-weight:800;margin:10px 0}.green{color:var(--green)}
+.layout{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}.panel h2{font-size:19px;margin:0 0 16px}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{text-align:left;padding:12px 8px;border-bottom:1px solid #edf1f0}th{color:var(--muted);font-size:12px;text-transform:uppercase}
+.badge{display:inline-block;border-radius:20px;padding:5px 9px;background:#e3f6ed;color:#16724e;font-size:12px}
+.progress{height:8px;border-radius:9px;background:#e8efed;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;background:var(--green)}
+button{border:0;border-radius:9px;padding:10px 14px;background:var(--green);color:white;font-weight:700;cursor:pointer}
+input,select{padding:10px;border:1px solid var(--line);border-radius:8px;width:100%;margin:6px 0 12px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:10px}form button{grid-column:1/-1}
+.notice{padding:12px 14px;background:#fff8e8;border:1px solid #f1dfad;border-radius:10px;color:#805719;margin:16px 0}
+footer{text-align:center;color:#82909c;font-size:12px;padding:28px}
+@media(max-width:700px){.layout{grid-template-columns:1fr}form{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="brand">♻ Hostel<span>Wise</span></div><div><small>SMART HOSTEL FOOD WASTE MANAGEMENT</small></div></header>
+<main>
+<h1>Food Waste Dashboard</h1><div class="sub">Track meal demand, reduce leftovers, and coordinate surplus food responsibly.</div>
+<div class="notice">Demo prototype — all numbers and records are sample data for academic demonstration.</div>
+<section class="cards">
+<div class="card"><div class="label">Meals planned today</div><div class="value">420</div><div class="label">Across breakfast, lunch & dinner</div></div>
+<div class="card"><div class="label">Estimated surplus</div><div class="value">32 kg</div><div class="label green">↓ 18% from last week (demo)</div></div>
+<div class="card"><div class="label">Food rescued this month</div><div class="value">146 kg</div><div class="label">Logged by hostel staff</div></div>
+<div class="card"><div class="label">Waste reduction target</div><div class="value">70%</div><div class="progress"><i style="width:62%"></i></div></div>
+</section>
+<div class="layout">
+<section class="panel"><h2>Meal-wise food tracking</h2><table><thead><tr><th>Meal</th><th>Prepared</th><th>Leftover</th><th>Status</th></tr></thead><tbody>
+<tr><td>Breakfast</td><td>120 portions</td><td>7 kg</td><td><span class="badge">Low</span></td></tr>
+<tr><td>Lunch</td><td>180 portions</td><td>18 kg</td><td><span class="badge" style="background:#fff1d7;color:#8b5a08">Monitor</span></td></tr>
+<tr><td>Dinner</td><td>120 portions</td><td>7 kg</td><td><span class="badge">Low</span></td></tr></tbody></table>
+<h2 style="margin-top:24px">Weekly reduction progress</h2><div class="label">Target: reduce avoidable waste by 70%</div><div class="progress"><i style="width:62%"></i></div><p class="label">62% of the demo target reached.</p></section>
+<section class="panel"><h2>Log a surplus meal</h2><form id="surplusForm">
+<div><label class="label">Meal</label><select id="meal"><option>Breakfast</option><option>Lunch</option><option>Dinner</option></select></div>
+<div><label class="label">Food category</label><select id="food"><option>Cooked rice</option><option>Vegetables</option><option>Dal / curry</option><option>Bread / roti</option><option>Other</option></select></div>
+<div><label class="label">Quantity (kg)</label><input id="qty" type="number" min="0.1" step="0.1" value="2"></div>
+<div><label class="label">Action</label><select id="action"><option>Safe redistribution</option><option>Adjust next batch</option><option>Compost</option></select></div>
+<button type="submit">Add demo record</button></form><div id="result" class="label" aria-live="polite">New records will appear here for this session.</div></section>
+</div>
+<section class="panel" style="margin-top:16px"><h2>Suggested actions</h2><div class="cards">
+<div><b>1. Adjust preparation</b><p class="label">Compare planned portions with actual attendance before the next meal.</p></div>
+<div><b>2. Redistribute safely</b><p class="label">Only offer suitable surplus food through approved hostel procedures.</p></div>
+<div><b>3. Compost scraps</b><p class="label">Separate inedible scraps from food that can be safely reused.</p></div>
+</div></section>
+</main><footer>HostelWise · AI-Assisted Food Waste Management Prototype · Sample data only</footer>
+<script>
+document.getElementById('surplusForm').addEventListener('submit',function(e){e.preventDefault();const meal=document.getElementById('meal').value,food=document.getElementById('food').value,qty=document.getElementById('qty').value,action=document.getElementById('action').value;document.getElementById('result').textContent=`Demo record added: ${qty} kg of ${food} from ${meal}; action: ${action}.`;});
+</script></body></html>
